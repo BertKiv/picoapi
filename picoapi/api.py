@@ -124,7 +124,7 @@ class PicoAPI(FastAPI):
                     service.name: try_get_json(
                         "http://{}:{}/openapi.json".format(service.host, service.port)
                     ),
-                    servers.url: "http://{}:{}".format(service.host, service.port),
+                    service.servers.url: "http://{}:{}".format(service.host, service.port),
                 }
                 for service in self.services
             ]
