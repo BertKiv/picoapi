@@ -121,9 +121,11 @@ class PicoAPI(FastAPI):
         return JSONResponse(
             [
                 {
-                    service.name: try_get_json(
+                    service.name:
+                    {"host": "http://{}:{}".format(service.host, service.port)},
+                    try_get_json(
                         "http://{}:{}/openapi.json".format(service.host, service.port)
-                    ).update({"host": "http://{}:{}".format(service.host, service.port)}),
+                    ),
                 }
                 for service in self.services
             ]
