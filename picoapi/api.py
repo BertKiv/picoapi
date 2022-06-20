@@ -120,7 +120,7 @@ class PicoAPI(FastAPI):
 
         def response(srv):
             from_openapi_json = str({
-                    service.name: 
+                    srv.name: 
                     try_get_json(
                         "http://{}:{}/openapi.json".format(srv.host, srv.port)
                     ),
