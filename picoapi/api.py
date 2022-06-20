@@ -118,15 +118,27 @@ class PicoAPI(FastAPI):
             except:
                 return {"status": "not running!"}
 
-        return JSONResponse(
-            [
-                {
+        def response(srv):
+            from_openapi_json = {
                     service.name: 
-                    {"host": "http://{}:{}".format(service.host, service.port)},
+                    "host": "http://{}:{}".format(srv.host, srv.port),
                     try_get_json(
-                        "http://{}:{}/openapi.json".format(service.host, service.port)
+                        "http://{}:{}/openapi.json".format(srv.host, srv.port)
                     ),
                 }
+            url_json = {"host": "http://{}:{}".format(srv.host, srv.port)}
+            return from_openapi_json.update(url_json)
+
+        return JSONResponse(
+            [
+                # {
+                #     service.name: 
+                #     "host": "http://{}:{}".format(service.host, service.port),
+                #     try_get_json(
+                #         "http://{}:{}/openapi.json".format(service.host, service.port)
+                #     ),
+                # }
+                response(service)
                 for service in self.services
             ]
         )
