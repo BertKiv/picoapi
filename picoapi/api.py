@@ -115,7 +115,7 @@ class PicoAPI(FastAPI):
     async def get_services_openapi(self):
         def try_get_json(url):
             try:
-                return requests.get(url).json()
+                return str(requests.get(url).json())
             except:
                 return {"status": "not running!"}
 
