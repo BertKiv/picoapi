@@ -6,7 +6,6 @@ class HealthCheckDefinition(BaseModel):
     url: str
     interval: Optional[int] = 30
 
-
 class MicroserviceDefinition(BaseModel):
     name: str
     tags: List[str]
