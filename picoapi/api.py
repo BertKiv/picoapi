@@ -2,7 +2,6 @@ import os
 from typing import List
 
 import requests
-import json
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -115,7 +114,7 @@ class PicoAPI(FastAPI):
     async def get_services_openapi(self):
         def try_get_json(url):
             try:
-                return str(requests.get(url).json())
+                return requests.get(url).json()
             except:
                 return {"status": "not running!"}
 
