@@ -1,5 +1,4 @@
 import os
-import json
 from typing import List
 
 import requests
@@ -30,10 +29,10 @@ def register_uservice():
             ),
             "interval": os.getenv("API_HEALTH_INTERVAL"),
         },
-        "servers": json.dumps([{
+        "servers": ({
             "url": "http://{}:{}".format(os.environ["API_HOST"], os.environ["API_PORT"] if os.environ["API_PORT"] != '80' else ''),
             "description": "Default service's URL"
-        }]),
+        }).dict(),
     }
 
     requests.put(os.getenv("API_REGISTER_PATH"), json=uservice_definition)
