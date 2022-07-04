@@ -6,6 +6,10 @@ class HealthCheckDefinition(BaseModel):
     url: str
     interval: Optional[int] = 30
 
+class ServersDefinition(BaseModel):
+    url: str
+    description: str    
+
 class MicroserviceDefinition(BaseModel):
     name: str
     tags: List[str]
@@ -13,3 +17,4 @@ class MicroserviceDefinition(BaseModel):
     port: int
     metadata: Optional[Dict]
     healthcheck: Optional[HealthCheckDefinition]
+    servers: Optional[ServersDefinition]

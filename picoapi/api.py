@@ -29,6 +29,10 @@ def register_uservice():
             ),
             "interval": os.getenv("API_HEALTH_INTERVAL"),
         },
+        "servers": {
+            "url": "http://{}:{}".format(os.environ["API_HOST"], os.environ["API_PORT"] if os.environ["API_PORT"] != '80' else ''),
+            "description": "default"
+        },
     }
 
     requests.put(os.getenv("API_REGISTER_PATH"), json=uservice_definition)
