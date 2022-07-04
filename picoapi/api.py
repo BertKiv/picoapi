@@ -31,7 +31,7 @@ def register_uservice():
         },
         "servers": [{
             "url": "http://{}:{}".format(os.environ["API_HOST"], os.environ["API_PORT"] if os.environ["API_PORT"] != '80' else ''),
-            "description": "default"
+            "description": "Default service's URL"
         }],
     }
 
